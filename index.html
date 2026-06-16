@@ -125,7 +125,6 @@
             border: 3px dashed #ff8fa3;
             border-radius: 16px;
             padding: 15px;
-            min-height: 650px; /* Kept box stable for longer messages */
             min-height: 65px;
             display: flex;
             align-items: center;
@@ -137,7 +136,7 @@
             margin-bottom: 15px;
         }
 
-        /* Spotify Section Link Style */
+        /* Spotify Playlist Link Style */
         .spotify-link {
             text-decoration: none;
             background: #d4edd6;
@@ -152,7 +151,7 @@
             justify-content: center;
             gap: 8px;
             transition: transform 0.1s ease;
-            margin: 5px auto 0 auto;
+            margin: 5px auto 10px auto;
             max-width: 240px;
             width: 100%;
             box-sizing: border-box;
@@ -160,6 +159,25 @@
         
         .spotify-link:active {
             transform: scale(0.98);
+        }
+
+        /* Ambient Audio Mini-Toggle Container */
+        .audio-controls {
+            margin-bottom: 5px;
+        }
+        
+        .audio-toggle {
+            background: #e2f0d9;
+            border: 3px solid #70ad47;
+            border-radius: 12px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #385723;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .options-matrix {
@@ -271,6 +289,10 @@
 </head>
 <body>
 
+<audio id="bg-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
 <div class="cabin-container">
     <div class="illustration cloud-left">☁️</div>
     <div class="illustration bird-left">🐦</div>
@@ -285,7 +307,6 @@
     </header>
 
     <div class="dashboard-grid">
-        <!-- Panel 1: Personal Reminders + Playlist -->
         <div class="vector-card">
             <div>
                 <div class="card-heading">🌸 A LITTLE REMINDER</div>
@@ -293,13 +314,19 @@
                 <div id="hype-text-box">Take a deep breath. You are safe here, and you are doing just fine. 🌱</div>
             </div>
             
-            <!-- !!! REPLACE THE URL BELOW WITH YOUR PLAYLIST URL !!! -->
-            <a href="https://open.spotify.com/playlist/37i9dQZF1EIfeeY1Nyg89M" target="_blank" class="spotify-link">
-                🎵 Put on your cozy playlist
-            </a>
+            <div>
+                <a href="https://open.spotify.com/playlist/37i9dQZF1EIfeeY1Nyg89M" target="_blank" class="spotify-link">
+                    🎵 Put on your cozy playlist
+                </a>
+
+                <div class="audio-controls">
+                    <button class="audio-toggle" id="music-btn" onclick="toggleMusic()">
+                        打 Mute Background Music
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Panel 2: Virtual Vibe Check -->
         <div class="vector-card">
             <div class="card-heading">📡 VIRTUAL VIBE CHECK</div>
             
@@ -314,7 +341,6 @@
         </div>
     </div>
 
-    <!-- Bottom Section: Gentle Reminder -->
     <div class="reminder-banner">
         <div class="badge-tab">Soft thoughts</div>
         <p class="reminder-message">Your only responsibility right now is to get comfortable. Grab a warm blanket, a good snack, and allow your mind and body to completely rest. 🛌🍕</p>
@@ -326,7 +352,6 @@
 </div>
 
 <script>
-    // Elevated, grounding, thoughtful messages
     const cozyQuotes = [
         "Take a deep breath. You are safe here, and you are doing just fine. 🌱",
         "I am so proud of you, even when you feel like you are doing absolutely nothing. 🤍",
@@ -336,10 +361,43 @@
         "The world can wait for a little while. Take all the time you need to reset. ☕"
     ];
 
+    let musicStarted = false;
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+
     function fireHype() {
         const box = document.getElementById('hype-text-box');
         const randomPos = Math.floor(Math.random() * cozyQuotes.length);
         box.innerText = cozyQuotes[randomPos];
+
+        // Autoplay background music smoothly on first interaction
+        if (!musicStarted) {
+            music.volume = 0.35; // Soft background level
+            music.play().then(() => {
+                musicStarted = true;
+                musicBtn.innerHTML = "🔊 Ambient Music Playing";
+                musicBtn.style.backgroundColor = "#e2f0d9";
+                musicBtn.style.color = "#385723";
+                musicBtn.style.borderColor = "#70ad47";
+            }).catch(e => console.log("Audio waiting for stronger interaction token"));
+        }
+    }
+
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            musicStarted = true;
+            musicBtn.innerHTML = "🔊 Ambient Music Playing";
+            musicBtn.style.backgroundColor = "#e2f0d9";
+            musicBtn.style.color = "#385723";
+            musicBtn.style.borderColor = "#70ad47";
+        } else {
+            music.pause();
+            musicBtn.innerHTML = "🔇 Ambient Music Muted";
+            musicBtn.style.backgroundColor = "#f2dede";
+            musicBtn.style.color = "#a94442";
+            musicBtn.style.borderColor = "#ebccd1";
+        }
     }
 
     function sendToInsta(messageText) {
@@ -347,7 +405,6 @@
             const statusBox = document.getElementById('status-alert-box');
             statusBox.innerHTML = "📋 Copied! Opening Insta... Just paste & send!";
             
-            // !!! REPLACE YOUR_INSTAGRAM_USERNAME BELOW WITH YOUR REAL ACCOUNT NAME !!!
             setTimeout(() => {
                 window.open("https://instagram.com/avinashsangisetti", "_blank");
             }, 600);
