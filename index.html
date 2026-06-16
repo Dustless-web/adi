@@ -289,8 +289,8 @@
 </head>
 <body>
 
-<audio id="bg-music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+<audio id="bg-music" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3" type="audio/mp3">
 </audio>
 
 <div class="cabin-container">
@@ -321,7 +321,7 @@
 
                 <div class="audio-controls">
                     <button class="audio-toggle" id="music-btn" onclick="toggleMusic()">
-                        打 Mute Background Music
+                        🔇 Ambient Music Off
                     </button>
                 </div>
             </div>
@@ -372,7 +372,7 @@
 
         // Autoplay background music smoothly on first interaction
         if (!musicStarted) {
-            music.volume = 0.35; // Soft background level
+            music.volume = 0.25; // Nice, soft background whispering level
             music.play().then(() => {
                 musicStarted = true;
                 musicBtn.innerHTML = "🔊 Ambient Music Playing";
