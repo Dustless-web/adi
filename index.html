@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Snuggle Sanctuary</title>
+    <title>Cozy Comfort Cabin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
@@ -98,7 +98,7 @@
         }
 
         .dispense-button {
-            background: #ff6b8b;
+            background: #c38a5a;
             color: #ffffff;
             border: 4px solid #5c4538;
             border-radius: 16px;
@@ -125,6 +125,7 @@
             border: 3px dashed #ff8fa3;
             border-radius: 16px;
             padding: 15px;
+            min-height: 650px; /* Kept box stable for longer messages */
             min-height: 65px;
             display: flex;
             align-items: center;
@@ -136,7 +137,7 @@
             margin-bottom: 15px;
         }
 
-        /* Spotify Playlist Link Style */
+        /* Spotify Section Link Style */
         .spotify-link {
             text-decoration: none;
             background: #d4edd6;
@@ -151,7 +152,7 @@
             justify-content: center;
             gap: 8px;
             transition: transform 0.1s ease;
-            margin: 5px auto 10px auto;
+            margin: 5px auto 0 auto;
             max-width: 240px;
             width: 100%;
             box-sizing: border-box;
@@ -159,25 +160,6 @@
         
         .spotify-link:active {
             transform: scale(0.98);
-        }
-
-        /* Ambient Audio Mini-Toggle Container */
-        .audio-controls {
-            margin-bottom: 5px;
-        }
-        
-        .audio-toggle {
-            background: #f2dede;
-            border: 3px solid #ebccd1;
-            border-radius: 12px;
-            padding: 6px 14px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #a94442;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .options-matrix {
@@ -289,11 +271,6 @@
 </head>
 <body>
 
-<!-- Hidden High-Reliability Lofi Stream -->
-<audio id="bg-music" loop crossorigin="anonymous" preload="auto">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
-</audio>
-
 <div class="cabin-container">
     <div class="illustration cloud-left">☁️</div>
     <div class="illustration bird-left">🐦</div>
@@ -303,59 +280,53 @@
     <div class="illustration cat-badge">🐈‍⬛</div>
 
     <header>
-        <h1>The Snuggle Sanctuary 🧸✨</h1>
-        <p>A magical little space built just for my cute lil girlfriend.<br>Drop your worries at the door and get cozy.</p>
+        <h1>To My Cute Lil Girlfriend 💖</h1>
+        <p>I'll always be your quiet little corner where you can be YOU<br>and remember that you don't have to carry it all today.</p>
     </header>
 
     <div class="dashboard-grid">
-        <!-- Panel 1: Love Notes & Audio Controls -->
+        <!-- Panel 1: Personal Reminders + Playlist -->
         <div class="vector-card">
             <div>
-                <div class="card-heading">💌 SWEET LOVE NOTES</div>
-                <button class="dispense-button" onclick="fireHype()">TAP FOR SNUGGLES</button>
+                <div class="card-heading">🌸 A LITTLE REMINDER</div>
+                <button class="dispense-button" onclick="fireHype()">TAP FOR COMFORT</button>
                 <div id="hype-text-box">Take a deep breath. You are safe here, and you are doing just fine. 🌱</div>
             </div>
             
-            <div>
-                <a href="https://open.spotify.com/playlist/37i9dQZF1EIfeeY1Nyg89M" target="_blank" class="spotify-link">
-                    🎵 Open Our Custom Playlist
-                </a>
-
-                <div class="audio-controls">
-                    <button class="audio-toggle" id="music-btn" onclick="toggleMusic()">
-                        🔇 Music Loading... Tap button above!
-                    </button>
-                </div>
-            </div>
+            <!-- !!! REPLACE THE URL BELOW WITH YOUR PLAYLIST URL !!! -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1EIfeeY1Nyg89M" target="_blank" class="spotify-link">
+                🎵 Put on your cozy playlist
+            </a>
         </div>
 
-        <!-- Panel 2: Transmission System -->
+        <!-- Panel 2: Virtual Vibe Check -->
         <div class="vector-card">
-            <div class="card-heading">📡 REAL-TIME MOOD TRANSMITTER</div>
+            <div class="card-heading">📡 VIRTUAL VIBE CHECK</div>
             
             <div class="options-matrix">
-                <button class="pill-btn pill-happy" onclick="sendToInsta('Sanctuary Update: Send me cute reels! 🤡')">🤡 Send me cute reels</button>
-                <button class="pill-btn pill-complain" onclick="sendToInsta('Sanctuary Update: I need to vent out loud 😤')">😤 I need to vent out loud</button>
-                <button class="pill-btn pill-cuddle" onclick="sendToInsta('Sanctuary Update: I request a needy voice call 📞')">📞 I request a needy voice call</button>
-                <button class="pill-btn pill-quiet" onclick="sendToInsta('Sanctuary Update: Do not text, I am hibernating 🤫')">🤫 Do not text, I am hibernating</button>
+                <button class="pill-btn pill-happy" onclick="sendToInsta('Vibe Check: Distract me with funny things! 🤡')">🤡 Distract me with funny things</button>
+                <button class="pill-btn pill-complain" onclick="sendToInsta('Vibe Check: I need to complain out loud 😤')">😤 I need to complain out loud</button>
+                <button class="pill-btn pill-cuddle" onclick="sendToInsta('Vibe Check: Just want a cozy phone call 📞')">📞 Just want a cozy phone call</button>
+                <button class="pill-btn pill-quiet" onclick="sendToInsta('Vibe Check: Do not text, I am napping 🤫')">🤫 Do not text, I am napping</button>
             </div>
             
-            <div id="status-alert-box">💡 Tapping updates my inbox over on Instagram!</div>
+            <div id="status-alert-box">💡 Tapping copies the text and opens Instagram!</div>
         </div>
     </div>
 
-    <!-- Bottom Section: Cozy Protocol -->
+    <!-- Bottom Section: Gentle Reminder -->
     <div class="reminder-banner">
-        <div class="badge-tab">Cozy Protocol</div>
-        <p class="reminder-message">Your only job right now is to melt into a puddle of comfort. Grab your favorite blanket, find a tasty snack, and let your mind drift away. 🛌🍕</p>
+        <div class="badge-tab">Soft thoughts</div>
+        <p class="reminder-message">Your only responsibility right now is to get comfortable. Grab a warm blanket, a good snack, and allow your mind and body to completely rest. 🛌🍕</p>
     </div>
 
     <footer>
-        No matter how heavy the day feels, I've always got you. ❤️
+        Take all the time you need. I'm right here. ❤️
     </footer>
 </div>
 
 <script>
+    // Elevated, grounding, thoughtful messages
     const cozyQuotes = [
         "Take a deep breath. You are safe here, and you are doing just fine. 🌱",
         "I am so proud of you, even when you feel like you are doing absolutely nothing. 🤍",
@@ -365,61 +336,18 @@
         "The world can wait for a little while. Take all the time you need to reset. ☕"
     ];
 
-    let musicStarted = false;
-    const music = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('music-btn');
-
     function fireHype() {
         const box = document.getElementById('hype-text-box');
         const randomPos = Math.floor(Math.random() * cozyQuotes.length);
         box.innerText = cozyQuotes[randomPos];
-
-        // This interaction token is verified by the browser, unlocking audio
-        if (!musicStarted) {
-            music.volume = 0.30; 
-            var playPromise = music.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    musicStarted = true;
-                    updateBtnUI(true);
-                }).catch(e => {
-                    console.log("Playback engine waiting for interaction override", e);
-                });
-            }
-        }
-    }
-
-    function toggleMusic() {
-        if (music.paused) {
-            music.play();
-            musicStarted = true;
-            updateBtnUI(true);
-        } else {
-            music.pause();
-            updateBtnUI(false);
-        }
-    }
-
-    function updateBtnUI(isPlaying) {
-        if(isPlaying) {
-            musicBtn.innerHTML = "🔊 Ambient Music Playing";
-            musicBtn.style.backgroundColor = "#e2f0d9";
-            musicBtn.style.color = "#385723";
-            musicBtn.style.borderColor = "#70ad47";
-        } else {
-            musicBtn.innerHTML = "🔇 Ambient Music Muted";
-            musicBtn.style.backgroundColor = "#f2dede";
-            musicBtn.style.color = "#a94442";
-            musicBtn.style.borderColor = "#ebccd1";
-        }
     }
 
     function sendToInsta(messageText) {
         navigator.clipboard.writeText(messageText).then(() => {
             const statusBox = document.getElementById('status-alert-box');
-            statusBox.innerHTML = "📋 Copied Status! Opening Insta...";
+            statusBox.innerHTML = "📋 Copied! Opening Insta... Just paste & send!";
             
+            // !!! REPLACE YOUR_INSTAGRAM_USERNAME BELOW WITH YOUR REAL ACCOUNT NAME !!!
             setTimeout(() => {
                 window.open("https://instagram.com/avinashsangisetti", "_blank");
             }, 600);
