@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Comfort Cabin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #fcaec1;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .cabin-container {
+            max-width: 950px;
+            width: 100%;
+            background: #fff9e9;
+            border: 6px solid #ffffff;
+            border-radius: 30px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .illustration {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+        }
+        .cloud-left { top: 15px; left: 15px; font-size: 2rem; filter: drop-shadow(0 2px 0 #fff); }
+        .bird-left { top: 50px; left: 55px; font-size: 1.2rem; }
+        .cloud-right { top: 20px; right: 20px; font-size: 2rem; filter: drop-shadow(0 2px 0 #fff); }
+        .cat-badge { bottom: 15px; right: 15px; font-size: 2rem; }
+        .sparkle-gold { top: 180px; left: 15px; font-size: 1.2rem; }
+        .sparkle-purple { bottom: 120px; left: 20px; font-size: 1.2rem; }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-family: 'Fredoka', sans-serif;
+            color: #ff6b8b;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1rem;
+            color: #5c4538;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .dashboard-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .vector-card {
+            background: #ffffff;
+            border: 4px solid #ffccd5;
+            border-radius: 24px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 6px 0px #ffccd5;
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-heading {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            color: #5c4538;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .dispense-button {
+            background: #c38a5a;
+            color: #ffffff;
+            border: 4px solid #5c4538;
+            border-radius: 16px;
+            padding: 12px 25px;
+            font-size: 1.15rem;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 0px #5c4538;
+            transition: all 0.1s ease;
+            width: 100%;
+            max-width: 220px;
+            margin: 0 auto 15px auto;
+            display: block;
+        }
+
+        .dispense-button:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0px #5c4538;
+        }
+
+        #hype-text-box {
+            background: #fff2f5;
+            border: 3px dashed #ff8fa3;
+            border-radius: 16px;
+            padding: 15px;
+            min-height: 650px; /* Kept box stable for longer messages */
+            min-height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            color: #5c4538;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        /* Spotify Section Link Style */
+        .spotify-link {
+            text-decoration: none;
+            background: #d4edd6;
+            border: 3px solid #1ed760;
+            border-radius: 14px;
+            padding: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1aa34a;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.1s ease;
+            margin: 5px auto 0 auto;
+            max-width: 240px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .spotify-link:active {
+            transform: scale(0.98);
+        }
+
+        .options-matrix {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .pill-btn {
+            border: 4px solid #5c4538;
+            border-radius: 18px;
+            padding: 14px 10px;
+            font-size: 1.05rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            color: #5c4538;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 5px 0px #5c4538;
+            transition: all 0.1s ease;
+            box-sizing: border-box;
+        }
+
+        .pill-happy { background-color: #ffccd5; }
+        .pill-complain { background-color: #fcc2b2; }
+        .pill-cuddle { background-color: #ccebce; }
+        .pill-quiet { background-color: #d1c2bd; }
+
+        .pill-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0px #5c4538;
+        }
+
+        #status-alert-box {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ff6b8b;
+            text-align: center;
+            min-height: 24px;
+        }
+
+        .reminder-banner {
+            background: #fff6d1;
+            border: 4px dashed #ffb703;
+            border-radius: 24px;
+            padding: 25px 15px 15px 15px;
+            text-align: center;
+            box-shadow: 0 6px 0px #fce8a4;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .badge-tab {
+            display: inline-block;
+            background: #ffffff;
+            border: 3px solid #5c4538;
+            border-radius: 10px;
+            padding: 2px 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #5c4538;
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-transform: uppercase;
+        }
+
+        .reminder-message {
+            font-size: 1.1rem;
+            color: #5c4538;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1rem;
+            color: #ff6b8b;
+            font-weight: 700;
+        }
+
+        @media (min-width: 650px) {
+            body { padding: 30px 20px; }
+            .cabin-container { padding: 50px 40px; }
+            header h1 { font-size: 2.8rem; }
+            header p { font-size: 1.25rem; }
+            
+            .dashboard-grid { flex-direction: row; display: flex; }
+            .vector-card { width: 50%; }
+            .options-matrix { grid-template-columns: 1fr 1fr; }
+            
+            .cloud-left { top: 35px; left: 40px; font-size: 3.5rem; }
+            .bird-left { top: 95px; left: 100px; font-size: 1.8rem; }
+            .cloud-right { top: 50px; right: 40px; font-size: 3rem; }
+            .cat-badge { bottom: 25px; right: 35px; font-size: 2.8rem; }
+            .sparkle-gold { top: 220px; left: 25px; font-size: 1.5rem; }
+            .sparkle-purple { bottom: 140px; left: 40px; font-size: 1.5rem; }
+            .reminder-banner { padding: 24px; margin-top: 0; }
+            .reminder-message { font-size: 1.35rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cabin-container">
+    <div class="illustration cloud-left">☁️</div>
+    <div class="illustration bird-left">🐦</div>
+    <div class="illustration cloud-right">☁️</div>
+    <div class="illustration sparkle-gold">⭐</div>
+    <div class="illustration sparkle-purple">✨</div>
+    <div class="illustration cat-badge">🐈‍⬛</div>
+
+    <header>
+        <h1>To My Cute Lil Girlfriend 💖</h1>
+        <p>I'll always be your quiet little corner where you can be YOU<br>and remember that you don't have to carry it all today.</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <!-- Panel 1: Personal Reminders + Playlist -->
+        <div class="vector-card">
+            <div>
+                <div class="card-heading">🌸 A LITTLE REMINDER</div>
+                <button class="dispense-button" onclick="fireHype()">TAP FOR COMFORT</button>
+                <div id="hype-text-box">Take a deep breath. You are safe here, and you are doing just fine. 🌱</div>
+            </div>
+            
+            <!-- !!! REPLACE THE URL BELOW WITH YOUR PLAYLIST URL !!! -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1EIfeeY1Nyg89M" target="_blank" class="spotify-link">
+                🎵 Put on your cozy playlist
+            </a>
+        </div>
+
+        <!-- Panel 2: Virtual Vibe Check -->
+        <div class="vector-card">
+            <div class="card-heading">📡 VIRTUAL VIBE CHECK</div>
+            
+            <div class="options-matrix">
+                <button class="pill-btn pill-happy" onclick="sendToInsta('Vibe Check: Distract me with funny things! 🤡')">🤡 Distract me with funny things</button>
+                <button class="pill-btn pill-complain" onclick="sendToInsta('Vibe Check: I need to complain out loud 😤')">😤 I need to complain out loud</button>
+                <button class="pill-btn pill-cuddle" onclick="sendToInsta('Vibe Check: Just want a cozy phone call 📞')">📞 Just want a cozy phone call</button>
+                <button class="pill-btn pill-quiet" onclick="sendToInsta('Vibe Check: Do not text, I am napping 🤫')">🤫 Do not text, I am napping</button>
+            </div>
+            
+            <div id="status-alert-box">💡 Tapping copies the text and opens Instagram!</div>
+        </div>
+    </div>
+
+    <!-- Bottom Section: Gentle Reminder -->
+    <div class="reminder-banner">
+        <div class="badge-tab">Soft thoughts</div>
+        <p class="reminder-message">Your only responsibility right now is to get comfortable. Grab a warm blanket, a good snack, and allow your mind and body to completely rest. 🛌🍕</p>
+    </div>
+
+    <footer>
+        Take all the time you need. I'm right here. ❤️
+    </footer>
+</div>
+
+<script>
+    // Elevated, grounding, thoughtful messages
+    const cozyQuotes = [
+        "Take a deep breath. You are safe here, and you are doing just fine. 🌱",
+        "I am so proud of you, even when you feel like you are doing absolutely nothing. 🤍",
+        "Your body is working hard right now. Be gentle with it, and let yourself rest. 🩹",
+        "Just a reminder: you don't have to be strong or productive today. Just be comfortable. ✨",
+        "Sending you the biggest, warmest remote hug. I'm always in your corner. 🧸",
+        "The world can wait for a little while. Take all the time you need to reset. ☕"
+    ];
+
+    function fireHype() {
+        const box = document.getElementById('hype-text-box');
+        const randomPos = Math.floor(Math.random() * cozyQuotes.length);
+        box.innerText = cozyQuotes[randomPos];
+    }
+
+    function sendToInsta(messageText) {
+        navigator.clipboard.writeText(messageText).then(() => {
+            const statusBox = document.getElementById('status-alert-box');
+            statusBox.innerHTML = "📋 Copied! Opening Insta... Just paste & send!";
+            
+            // !!! REPLACE YOUR_INSTAGRAM_USERNAME BELOW WITH YOUR REAL ACCOUNT NAME !!!
+            setTimeout(() => {
+                window.open("https://instagram.com/avinashsangisetti", "_blank");
+            }, 600);
+        }).catch(err => {
+            window.open("https://instagram.com/avinashsangisetti", "_blank");
+        });
+    }
+</script>
+
+</body>
+</html>
